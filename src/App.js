@@ -12,12 +12,13 @@ import Table from "./Table";
 import "./App.css";
 import { sortData, prettyPrintStat } from "./util";
 import LineGraph from "./LineGraph";
+import numeral from "numeral";
 import "leaflet/dist/leaflet.css";
 
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
-  const [countryInfo, setCountryInfo] = useState([]);
+  const [countryInfo, setCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
   const [casesType, setCasesType] = useState("cases");
   const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
@@ -94,27 +95,27 @@ function App() {
 
         <div className="app__stats">
           <InfoBox
-            isRed
             active={casesType === "cases"}
             onClick={(e) => setCasesType("cases")}
             title="Coronavirus Cases"
+            isRed
             cases={prettyPrintStat(countryInfo.todayCases)}
-            total={prettyPrintStat(countryInfo.cases)}
+            total={numeral(countryInfo.cases).format("0.0a")}
           />
           <InfoBox
             active={casesType === "recovered"}
             onClick={(e) => setCasesType("recovered")}
             title="Recovered"
             cases={prettyPrintStat(countryInfo.todayRecovered)}
-            total={prettyPrintStat(countryInfo.recovered)}
+            total={numeral(countryInfo.recovered).format("0.0a")}
           />
           <InfoBox
-            isRed
             active={casesType === "deaths"}
             onClick={(e) => setCasesType("deaths")}
             title="Deaths"
+            isRed
             cases={prettyPrintStat(countryInfo.todayDeaths)}
-            total={prettyPrintStat(countryInfo.deaths)}
+            total={numeral(countryInfo.deaths).format("0.0a")}
           />
         </div>
 
