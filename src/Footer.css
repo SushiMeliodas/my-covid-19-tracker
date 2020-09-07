@@ -1,0 +1,12 @@
+.footer {
+  padding: 3em;
+  background-color: white;
+  padding-top: 3em;
+  border-top: white;
+  box-shadow: 0 0 8px -4px rgba(0, 0, 0, 0.5);
+}
+
+.footer__top {
+  display: flex;
+  justify-content: space-between;
+}
